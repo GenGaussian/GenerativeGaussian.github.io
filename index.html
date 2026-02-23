@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GenerativeGaussian">
+  <meta name="keywords" content="Human Avatar, Gaussian Splatting, 3D Reconstruction">
+  <title>GenerativeGaussian</title>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/ppage.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+<!-- ===== Title ===== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 style="font-size:30px; width:1100px">
+            GenerativeGaussian: 3D Content Creation Based on Gaussian Splatting
+            with Perceptual Geometry and Depth Regularization
+          </h1>
+          <h3 style="font-size:18px; font-weight:normal; color:#555; margin-top:10px;">
+            Anonymous Submission
+          </h3>
+
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="javascript:void(0)" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Paper</span>
+              </a>
+            </span>
+
+            <span class="link-block">
+              <a href="javascript:void(0)" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span>arXiv</span>
+              </a>
+            </span>
+
+            <span class="link-block">
+              <a href="" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Code (Coming Soon)</span>
+              </a>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 框架图 -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/framework.png" alt="Framework" height="100%">
+      <h2 class="subtitle has-text-centered" style="margin-top: 15px;">
+        <span class="dnerf">GenerativeGaussian Framework</span>
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== Abstract ===== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Reconstructing 3D objects from a single image remains challenging due to severe
+            viewpoint ambiguity and inconsistent multi-view supervision. Existing image-to-3D
+            methods rely on generative models to infer unseen views, but often suffer from unstable
+            geometry and cross-view consistency. In this paper, we propose <b>GenerativeGaussian</b>,
+            an image-to-3D reconstruction framework based on 3D Gaussian Splatting and diffusion
+            priors. We reformulate SDS-based optimization as a view-consistent geometric learning
+            problem and introduce a perceptual geometry supervision with a nearest-anchor strategy
+            to stabilize diffusion-guided Gaussian optimization. In addition, we incorporate a
+            depth regularization scheme to constrain the spatial distribution of Gaussian
+            primitives and improve geometric fidelity. To further enhance appearance quality, we
+            extract a textured mesh and refine the UV texture using the color and structural
+            constraints. Extensive experiments demonstrate that GenerativeGaussian outperforms
+            state-of-the-art image-to-3D methods in color fidelity, geometric accuracy, and
+            multi-view consistency.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== Experimental Results ===== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-left">Experimental Results</h2>
+        <figure class="image" style="margin:0 auto;">
+          <img src="./static/images/comparison.png" alt="Comparison results">
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Generated 3D Models ===== -->
+<section class="section">
+  <div class="container is-widescreen">
+
+    <div class="columns">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-left">Generated 3D Models</h2>
+      </div>
+    </div>
+
+    <div class="columns is-multiline">
+
+      <!-- ================= Anya ================= -->
+      <div class="column is-full">
+        <p class="has-text-centered has-text-weight-semibold">Anya</p>
+
+        <video autoplay muted loop playsinline
+               style="width:100%; display:block; margin:0 auto;">
+          <source src="./sp/sp_anya.mp4" type="video/mp4">
+        </video>
+
+        <div class="columns is-mobile is-centered"
+             style="width:100%; margin-top:6px; padding-left:2ch;">
+          <div class="column has-text-centered">Input</div>
+          <div class="column has-text-centered"><b>Ours</b></div>
+          <div class="column has-text-centered">ContrastiveGaussian</div>
+          <div class="column has-text-centered">DreamGaussian</div>
+          <div class="column has-text-centered">SPAR3D</div>
+          <div class="column has-text-centered">SyncDreamer</div>
+        </div>
+      </div>
+
+      <!-- ================= Astronaut ================= -->
+      <div class="column is-full">
+        <p class="has-text-centered has-text-weight-semibold">Astronaut</p>
+
+        <video autoplay muted loop playsinline
+               style="width:100%; display:block; margin:0 auto;">
+          <source src="./sp/sp_astronaut.mp4" type="video/mp4">
+        </video>
+
+        <div class="columns is-mobile is-centered"
+             style="width:100%; margin-top:6px; padding-left:2ch;">
+          <div class="column has-text-centered">Input</div>
+          <div class="column has-text-centered"><b>Ours</b></div>
+          <div class="column has-text-centered">ContrastiveGaussian</div>
+          <div class="column has-text-centered">DreamGaussian</div>
+          <div class="column has-text-centered">SPAR3D</div>
+          <div class="column has-text-centered">SyncDreamer</div>
+        </div>
+      </div>
+
+      <!-- ================= Cat Statue ================= -->
+      <div class="column is-full">
+        <p class="has-text-centered has-text-weight-semibold">Cat Statue</p>
+
+        <video autoplay muted loop playsinline
+               style="width:100%; display:block; margin:0 auto;">
+          <source src="./sp/sp_catstatue.mp4" type="video/mp4">
+        </video>
+
+        <div class="columns is-mobile is-centered"
+             style="width:100%; margin-top:6px; padding-left:2ch;">
+          <div class="column has-text-centered">Input</div>
+          <div class="column has-text-centered"><b>Ours</b></div>
+          <div class="column has-text-centered">ContrastiveGaussian</div>
+          <div class="column has-text-centered">DreamGaussian</div>
+          <div class="column has-text-centered">SPAR3D</div>
+          <div class="column has-text-centered">SyncDreamer</div>
+        </div>
+      </div>
+
+      <!-- ================= CSM ================= -->
+      <div class="column is-full">
+        <p class="has-text-centered has-text-weight-semibold">CSM</p>
+
+        <video autoplay muted loop playsinline
+               style="width:100%; display:block; margin:0 auto;">
+          <source src="./sp/sp_csm.mp4" type="video/mp4">
+        </video>
+
+        <div class="columns is-mobile is-centered"
+             style="width:100%; margin-top:6px; padding-left:2ch;">
+          <div class="column has-text-centered">Input</div>
+          <div class="column has-text-centered"><b>Ours</b></div>
+          <div class="column has-text-centered">ContrastiveGaussian</div>
+          <div class="column has-text-centered">DreamGaussian</div>
+          <div class="column has-text-centered">SPAR3D</div>
+          <div class="column has-text-centered">SyncDreamer</div>
+        </div>
+      </div>
+
+      <!-- ================= Frog ================= -->
+      <div class="column is-full">
+        <p class="has-text-centered has-text-weight-semibold">Frog</p>
+
+        <video autoplay muted loop playsinline
+               style="width:100%; display:block; margin:0 auto;">
+          <source src="./sp/sp_frog.mp4" type="video/mp4">
+        </video>
+
+        <div class="columns is-mobile is-centered"
+             style="width:100%; margin-top:6px; padding-left:2ch;">
+          <div class="column has-text-centered">Input</div>
+          <div class="column has-text-centered"><b>Ours</b></div>
+          <div class="column has-text-centered">ContrastiveGaussian</div>
+          <div class="column has-text-centered">DreamGaussian</div>
+          <div class="column has-text-centered">SPAR3D</div>
+          <div class="column has-text-centered">SyncDreamer</div>
+        </div>
+      </div>
+
+      <!-- ================= Ghost ================= -->
+      <div class="column is-full">
+        <p class="has-text-centered has-text-weight-semibold">Ghost</p>
+
+        <video autoplay muted loop playsinline
+               style="width:100%; display:block; margin:0 auto;">
+          <source src="./sp/sp_ghost.mp4" type="video/mp4">
+        </video>
+
+        <div class="columns is-mobile is-centered"
+             style="width:100%; margin-top:6px; padding-left:2ch;">
+          <div class="column has-text-centered">Input</div>
+          <div class="column has-text-centered"><b>Ours</b></div>
+          <div class="column has-text-centered">ContrastiveGaussian</div>
+          <div class="column has-text-centered">DreamGaussian</div>
+          <div class="column has-text-centered">SPAR3D</div>
+          <div class="column has-text-centered">SyncDreamer</div>
+        </div>
+      </div>
+
+      <!-- ================= Rabbit ================= -->
+      <div class="column is-full">
+        <p class="has-text-centered has-text-weight-semibold">Rabbit</p>
+
+        <video autoplay muted loop playsinline
+               style="width:100%; display:block; margin:0 auto;">
+          <source src="./sp/sp_rabbit.mp4" type="video/mp4">
+        </video>
+
+        <div class="columns is-mobile is-centered"
+             style="width:100%; margin-top:6px; padding-left:2ch;">
+          <div class="column has-text-centered">Input</div>
+          <div class="column has-text-centered"><b>Ours</b></div>
+          <div class="column has-text-centered">ContrastiveGaussian</div>
+          <div class="column has-text-centered">DreamGaussian</div>
+          <div class="column has-text-centered">SPAR3D</div>
+          <div class="column has-text-centered">SyncDreamer</div>
+        </div>
+      </div>
+
+      <!-- ================= Zelda ================= -->
+      <div class="column is-full">
+        <p class="has-text-centered has-text-weight-semibold">Zelda</p>
+
+        <video autoplay muted loop playsinline
+               style="width:100%; display:block; margin:0 auto;">
+          <source src="./sp/sp_zelda.mp4" type="video/mp4">
+        </video>
+
+        <div class="columns is-mobile is-centered"
+             style="width:100%; margin-top:6px; padding-left:2ch;">
+          <div class="column has-text-centered">Input</div>
+          <div class="column has-text-centered"><b>Ours</b></div>
+          <div class="column has-text-centered">ContrastiveGaussian</div>
+          <div class="column has-text-centered">DreamGaussian</div>
+          <div class="column has-text-centered">SPAR3D</div>
+          <div class="column has-text-centered">SyncDreamer</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== Related Links ===== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-left">Related Links</h2>
+        <div class="content" style="text-align: left;">
+          <p>
+            • <a href="https://liuyuan-pal.github.io/SyncDreamer/"
+                 target="_blank" rel="noopener noreferrer">
+              SyncDreamer
+            </a>:
+            Generating Multiview-consistent Images from a Single-view Image.
+          </p>
+          <p>
+            • <a href="https://dreamgaussian.github.io/"
+                 target="_blank" rel="noopener noreferrer">
+              DreamGaussian
+            </a>:
+            Generative Gaussian Splatting for Efficient 3D Content Creation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
